@@ -1,0 +1,7 @@
+FECHA: 16-04-2018
+Agregar campo a la factura "Estado" = servir� para determinar si la factura fue pagada o no.
+
+/*-------------------------------------------------------------------------------------------*/
+
+FECHA: 17-04-2018
+Modificacion en tabla "Factura" fecha (DATETIME)
