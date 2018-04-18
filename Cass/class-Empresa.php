@@ -36,5 +36,27 @@
 				" Nombre: " . $this->nombre .
 				" TipoEmpresa_idTipoEmpresa: " . $this->TipoEmpresa_idTipoEmpresa;
 		}
+
+		#Funciones
+		public static function listarTodos($conexion){
+
+		}
+
+		public function seleccionar($conexion){
+
+		}
+
+		public function insertarRegistro($conexion){
+
+		}
+
+		public  function actualizarRegistro($conexion){
+
+		}
+
+		public static function eliminarRegistro($conexion, $id){
+
+		}
+
 	}
 ?>

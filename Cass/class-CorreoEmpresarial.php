@@ -46,5 +46,27 @@
 				" TipoCorreo_idTipoCorreo: " . $this->TipoCorreo_idTipoCorreo .
 				" Empresa_idEmpresa: " . $this->Empresa_idEmpresa;
 		}
+
+		#Funciones
+		public static function listarTodos($conexion){
+
+		}
+
+		public function seleccionar($conexion){
+
+		}
+
+		public function insertarRegistro($conexion){
+
+		}
+
+		public  function actualizarRegistro($conexion){
+
+		}
+
+		public static function eliminarRegistro($conexion, $id){
+
+		}
+
 	}
 ?>

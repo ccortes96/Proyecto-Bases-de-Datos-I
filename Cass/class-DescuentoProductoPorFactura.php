@@ -26,5 +26,27 @@
 			return "DescuentoProducto_idDescuento: " . $this->DescuentoProducto_idDescuento .
 				" Factura_idFactura: " . $this->Factura_idFactura;
 		}
+
+		#Funciones
+		public static function listarTodos($conexion){
+
+		}
+
+		public function seleccionar($conexion){
+
+		}
+
+		public function insertarRegistro($conexion){
+
+		}
+
+		public  function actualizarRegistro($conexion){
+
+		}
+
+		public static function eliminarRegistro($conexion, $id){
+
+		}
+
 	}
 ?>

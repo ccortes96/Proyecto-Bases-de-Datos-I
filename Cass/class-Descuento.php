@@ -46,5 +46,27 @@
 				" Estado: " . $this->estado .
 				" PorcentajeDescuento: " . $this->porcentajeDescuento;
 		}
+
+		#Funciones
+		public static function listarTodos($conexion){
+
+		}
+
+		public function seleccionar($conexion){
+
+		}
+
+		public function insertarRegistro($conexion){
+
+		}
+
+		public  function actualizarRegistro($conexion){
+
+		}
+
+		public static function eliminarRegistro($conexion, $id){
+
+		}
+
 	}
 ?>

@@ -36,5 +36,27 @@
 				" Envio_idEnvio: " . $this->Envio_idEnvio .
 				" Estado: " . $this->estado;
 		}
+
+		#Funciones
+		public static function listarTodos($conexion){
+
+		}
+
+		public function seleccionar($conexion){
+
+		}
+
+		public function insertarRegistro($conexion){
+
+		}
+
+		public  function actualizarRegistro($conexion){
+
+		}
+
+		public static function eliminarRegistro($conexion, $id){
+
+		}
+
 	}
 ?>
