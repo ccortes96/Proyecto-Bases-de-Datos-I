@@ -8,7 +8,7 @@
       break;
 
       case "seleccionar":
-            break;
+      break;
 
       case "eliminar-registro":
       break;
