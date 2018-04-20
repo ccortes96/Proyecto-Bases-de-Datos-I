@@ -1,0 +1,24 @@
+DROP FUNCTION IF EXISTS FN_BORRAR_TELEFONO_USUARIO
+
+DELIMITER $$
+
+CREATE FUNCTION FN_BORRAR_TELEFONO_USUARIO(
+  pnIdUsuario INT
+) RETURNS BOOLEAN
+
+BEGIN
+  DECLARE vnConteo INT;
+  DECLARE vbResp BOOLEAN;
+
+  SET vbResp = FALSE;
+  SET vnConteo = 0;
+
+  SELECT COUNT(*) INTO vnConteo FROM TelefonoUsuario tu
+  WHERE tu.Usuario_idUsuario = pnIdUsuario;
+
+  IF vnConteo >=2 THEN
+    SET vbResp = TRUE;
+  END IF;
+
+  RETURN vbResp
+END $$
