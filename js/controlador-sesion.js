@@ -10,6 +10,9 @@ $(document).on("submit","#form-signin",function(event){
 		success:function(respuesta){
 			alert(respuesta);
 			console.log(respuesta);
+			if (respuesta.ans=="0") {
+                window.location='principal.php';
+            }
 		}
 
 	});
