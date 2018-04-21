@@ -78,5 +78,20 @@
 
 		}
 
+		public static function login($conexion, $email, $password)
+        {
+
+            $query_call = sprintf("call SP_LOGIN ('%s', '%s',@_mensaje,@_ans);",
+                    $conexion->antiInyeccion($email),
+                    $conexion->antiInyeccion($password));
+            $query_select="Select @_mensaje,@_ans;";
+
+            $resultados_call=$conexion->ejecutarConsulta($query_call);
+            $resultados_select=$conexion->ejecutarConsulta($query_select);
+
+            $respuesta=$conexion->obtenerFila($resultados_select);
+            return $respuesta;
+        }
+
 	}
 ?>
