@@ -31,12 +31,12 @@
 
       <div class="form-label-group">
         <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required>
-        <label for="inputPassword">Contraseña</label>
+        <label for="inputPassword">ContraseÃ±a</label>
       </div>
 
       <div class="checkbox mb-3">
         <label>
-          <input type="checkbox" value="remember-me"> Recuérdame
+          <input type="checkbox" value="remember-me"> RecuÃ©rdame
         </label>
       </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
