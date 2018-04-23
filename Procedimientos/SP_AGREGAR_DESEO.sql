@@ -1,7 +1,7 @@
-DROP PROCEDURE IF EXISTS SP_ELIMINAR_DESEO;
+DROP PROCEDURE IF EXISTS SP_AGREGAR_DESEO;
 DELIMITER $$
-CREATE PROCEDURE SP_ELIMINAR_DESEO(
-  IN pnidCuenta       INT,
+CREATE PROCEDURE SP_AGREGAR_DESEO(
+  IN pnidCuenta      INT,
   IN pnidProducto     INT,
   OUT pcMensaje       VARCHAR(1000),
   OUT pbOcurrioError  BOOLEAN
@@ -20,13 +20,13 @@ SP:BEGIN
 
     SELECT COUNT(*) INTO vnConteo FROM Deseo WHERE Producto_idProducto = pnidProducto;
 
-    IF vnConteo > 0 THEN
-      DELETE FROM Deseo WHERE Producto_idProducto = pnidProducto;
-      SET pcMensaje = 'Producto eliminado con éxito.';
+    IF vnConteo = 0 THEN
+      INSERT INTO Deseo(Producto_idProducto, Cuenta_idCuenta, fecha) VALUES (pnidProducto, pnidCuenta, (SELECT CURDATE()));
+      SET pcMensaje = 'Producto agregado con éxito.';
       SET pbOcurrioError = FALSE;
       COMMIT;
     ELSE
-      SET pcMensaje='El Producto no existe en la lista.';
+      SET pcMensaje='El Producto ya existe en la lista.';
       LEAVE SP;
     END IF;
     

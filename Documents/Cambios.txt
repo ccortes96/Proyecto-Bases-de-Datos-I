@@ -8,3 +8,6 @@ Modificacion en tabla "Factura" fecha (DATETIME)
 
 FECHA: 21-04-2018
 ELIMINACION TABLAS DetalleFactura, DescuentoProducto, DescuentoProductoPorFactura.
+
+FECHA: 22-04-2018
+ELIMINACION DE MÓDULO ProductosVenta y tabla de ProductosPorCuenta, Se agrega la tabla oferta a producto y la tabla Deseo se añade al modulo de Cuenta.
