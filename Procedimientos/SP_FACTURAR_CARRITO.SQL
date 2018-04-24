@@ -3,6 +3,8 @@ DROP PROCEDURE IF EXISTS SP_FACTURAR_CARRITO;
 DELIMITER $$
 CREATE PROCEDURE SP_FACTURAR_CARRITO(
   IN pnidCarrito      INT,
+  IN pnidDescuento    INT,
+  IN pnidImpuesto     INT,
   OUT pcMensaje       VARCHAR(1000),
   OUT pbOcurrioError  BOOLEAN
 )
@@ -15,6 +17,10 @@ SP:BEGIN
     DECLARE vnI           INT DEFAULT 1;
     DECLARE vnIdProducto  INT;
     DECLARE vnCantidad    INT;
+    DECLARE vbAdescuento  BOOLEAN;
+    DECLARE vbAimpuesto   BOOLEAN;
+    DECLARE vcEdescuento  VARCHAR(1);
+    DECLARE vcEimpuesto   VARCHAR(1);
 
     SET autocommit=0;
     START TRANSACTION;
@@ -26,6 +32,22 @@ SP:BEGIN
     IF vnConteo1>0 THEN
       INSERT INTO Factura (Carrito_idCarrito, fecha) VALUES (pnidCarrito, (SELECT SYSDATE()));
       SET vnIdFnuevo = LAST_INSERT_ID();
+
+      SELECT estado INTO vcEdescuento FROM Descuento WHERE idDescuento = pnidDescuento;
+      SELECT estado INTO vcEimpuesto FROM TipoImpuesto WHERE idTipoImpuesto = pnidImpuesto;
+      
+      IF vcEdescuento = 'A' THEN 
+        INSERT INTO DescuentoFactura(Factura_idFactura, Descuento_idDescuento) VALUES (vnIdFnuevo, pnidDescuento);
+      ELSE 
+        INSERT INTO DescuentoFactura(Factura_idFactura, Descuento_idDescuento) VALUES (vnIdFnuevo, 16);
+      END IF;
+
+      IF vcEimpuesto = 'A' THEN 
+        INSERT INTO Impuesto(Factura_idFactura, TipoImpuesto_idTipoImpuesto) VALUES (vnIdFnuevo, pnidImpuesto);
+      ELSE
+        INSERT INTO Impuesto(Factura_idFactura, TipoImpuesto_idTipoImpuesto) VALUES (vnIdFnuevo, 16);
+      END IF;
+
       CREATE TEMPORARY TABLE Compras (
         idCompras           INT NOT NULL AUTO_INCREMENT,
         Producto_idProducto INT NOT NULL, 

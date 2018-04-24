@@ -75,6 +75,4 @@
 			$this->link = $link;
 		}
 	}
- 
-	
 ?>

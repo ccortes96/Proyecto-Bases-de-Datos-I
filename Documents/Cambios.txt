@@ -11,3 +11,12 @@ ELIMINACION TABLAS DetalleFactura, DescuentoProducto, DescuentoProductoPorFactur
 
 FECHA: 22-04-2018
 ELIMINACION DE MÓDULO ProductosVenta y tabla de ProductosPorCuenta, Se agrega la tabla oferta a producto y la tabla Deseo se añade al modulo de Cuenta.
+
+FECHA: 23-04-2018
+Adición de columna "estado" a la tabla Factura.
+
+FECHA: 23-04-2018
+Eliminación de tabla "DetalleEnvío" y se añade campo "estado" a la tabla Envio :ALTER TABLE Envio ADD estado VARCHAR(1) NOT NULL COMMENT "Se indica si el envío se realizó(R) o está pendiente(P)" DEFAULT "P";
+
+FECHA: 23-04-2018
+Agregar relación de uno a uno de DireccionUsuario a Envio llave foranea en envío.
