@@ -40,7 +40,7 @@
 		<div id="navigation">
 			<ul>
 			    <li><a href="#" class="active">INICIO</a></li>
-			    <li><a >echo $_SESSION[nombreCompleto]</a></li>
+			    <li><a  class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" name="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" /a></li>
 			    <li><a href="registro.php">CARRITO</a></li>
                             <li><a href="logout.php" name= "idsalir" id="idsalir" >SALIR</a></li>
 			    
