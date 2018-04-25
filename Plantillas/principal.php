@@ -197,6 +197,6 @@
 </div>	
 <!-- End Shell -->
 	
-	
+<script src="../js/controlador-principal.js" type="text/javascript"></script>
 </body>
 </html>
