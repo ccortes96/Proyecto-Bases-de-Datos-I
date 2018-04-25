@@ -1,9 +1,9 @@
 <?php
 	class Conexion{
-		private $usuario="u254924041_ec";
-		private $contrasena="oracle";
-		private $host="sql153.main-hosting.eu";
-		private $baseDatos="u254924041_venta";
+		private $usuario="root";
+		private $contrasena="";
+		private $host="localhost";
+		private $baseDatos="ventas";
 		private $puerto=3306;
 		private $link;
 		public function __construct(){
@@ -74,5 +74,8 @@
 		public function setLink($link){
 			$this->link = $link;
 		}
+
+
 	}
+
 ?>
