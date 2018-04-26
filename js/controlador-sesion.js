@@ -3,19 +3,18 @@ $(document).on("submit","#form-iniciarsesion",function(event){
 	event.preventDefault();
 	$.ajax({
 		type:"POST",
-		url:"../Ajax/gestionar-Login.php",
+		url:"Ajax/gestionar-Login.php",
 		dataType:"JSON",
-		//data:$(this).serialize(),
 		data:{
 				"accion":"login",
 				"username":$("#username").val(),
 				"pass":$("#pass").val()
 			},
 		success:function(respuesta){
-			alert(respuesta);
+			alert(respuesta.mensaje);
 			console.log(respuesta);
 			if (respuesta.ans=="0") {
-                window.location='principal.php';
+                window.location='index.php';
             }
 		}
 
@@ -24,10 +23,10 @@ $(document).on("submit","#form-iniciarsesion",function(event){
 	});	
 	});
 
-$("#idsalir").click(function(){
+$("#btn_Logout").click(function(){
 	$.ajax({
 			type:"POST",
-			url:"../Ajax/gestionar-Login.php",
+			url:"Ajax/gestionar-Login.php",
 			dataType:"JSON",
 			data:{
 				"accion":"logout",

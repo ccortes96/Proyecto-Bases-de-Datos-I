@@ -1,5 +1,4 @@
 <?php
-
     include ("../class/class-conexion.php");
     include ("../class/class-usuario.php");
 

@@ -4,7 +4,7 @@ $(document).ready(function(){
 
 function listarNombreUsuario(){
 	$.ajax({
-		url:"../Ajax/gestionar-login.php",
+		url:"Ajax/gestionar-login.php",
 			dataType:"JSON",
 			method:"POST",
 			data:{

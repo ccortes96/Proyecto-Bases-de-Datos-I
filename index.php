@@ -1,49 +1,230 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
+<?php
+   session_start();
+   /*if($_SESSION['status']==false) { //Si el estado de la sesion es Falsa, osea que no se ha logeado entonces:
+   // CUALQUIER USUARIO REGISTRADO PUEDE VER ESTA PAGINA
+      session_destroy(); //Se destruye la sesion.
+      header("Location: login.php"); //se envia al usuario directo al login.
+   }*/
+ ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>Proyecto Final</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+	<!--[if lte IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
+	
+	<meta name="keywwords" content="Shop Around - Great free html template for on-line shop. Use it as a start point for your on line business. The template can be easily implemented in many open source E-commerce platforms" />
+	<meta name="description" content="Shop Around - Great free html template for on-line shop. Use it as a start point for your on line business. The template can be easily implemented in many open source E-commerce platforms" />
+	
+	<!-- JS -->
+	<script src="js/jquery-1.4.1.min.js" type="text/javascript"></script>	
+	<script src="js/jquery.jcarousel.pack.js" type="text/javascript"></script>	
+	<script src="js/jquery-func.js" type="text/javascript"></script>	
+	<!-- End JS -->
+	
+</head>
+<body>
+	
+<!-- Shell -->	
+<div class="shell">
+	
+	<!-- Header -->	
+	<div id="header">
+		<h1 id="logo"><a href="#">shoparound</a></h1>	
+		
+	
+		
+		<!-- Navigation -->
+		<div id="navigation">
+			<ul>
+			    <li><a href="index.php" class="active">INICIO</a></li>
 
-    <title>Login VOL-UNAH</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+			    <?php
+                  if(isset($_SESSION["status"])==true){
 
-    <!-- Custom styles for this template -->
-    <link href="css/floating-labels.css" rel="stylesheet">
-  </head>
+                  	/*$mensaje = "Hola ".$_SESSION["NOMBRE"];
+                  	echo $mensaje;*/
+                    
 
-  <body>
-    <form class="form-signin" id="form-signin">
-      <div class="text-center mb-4">
-        <div id="prueba" name="prueba"></div>
-        <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-        <h1 class="h3 mb-3 font-weight-normal">VOL-UNAH</h1>
-      </div>
+                    $boton ="<li><a  id=\"btn_Logout\"name=\"btn_Logout\" href=\"logout.php\">Salir</a></li>";
+                    //echo $boton;
 
-      <div class="form-label-group">
-        <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputEmail">Email</label>
-      </div>
+                    $boton1 = "<li><a  id=\"btn_Cuenta\"name=\"btn_Cuenta\" href=\"Cuenta.php\">Cuenta</a></li>";
+                    //echo $boton1;
 
-      <div class="form-label-group">
-        <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required>
-        <label for="inputPassword">Contraseña</label>
-      </div>
+                    $boton2 = "<li><a  id=\"btn_Carrito\"name=\"btn_Carrito\" href=\"Carrito.php\">Carrito</a></li>";
+                    //echo $boton2;
 
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Recuérdame
-        </label>
-      </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
-      <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
-    </form>
-    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/controlador-sesion.js"></script>
-  </body>
+                    $botones=$boton1.$boton.$boton2;
+
+                    echo $botones;
+
+                  }
+
+                  else{
+                  	$boton ="<li><a  id=\"btn_Login\"name=\"btn_Login\" href=\"iniciarsesion.php\">Iniciar Sesión</a></li>";
+                    echo $boton;
+
+                    $boton1 ="<li><a  id=\"btn_Registro\"name=\"btn_Registro\" href=\"registro.php\">Registrarse</a></li>";
+                    echo $boton1;
+                  }
+                ?>
+			    
+			</ul>
+		</div>
+		<!-- End Navigation -->
+	</div>
+	<!-- End Header -->
+	
+	<!-- Main -->
+	<div id="main">
+		<div class="cl">&nbsp;</div>
+		
+		<!-- Content -->
+		<div id="content">
+			
+			<!-- Content Slider -->
+			<div id="slider" class="box">
+				<div id="slider-holder">
+					<ul>
+					    <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
+					    <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
+					    <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
+					    <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
+					</ul>
+				</div>
+				<div id="slider-nav">
+					<a href="#" class="active">1</a>
+					<a href="#">2</a>
+					<a href="#">3</a>
+					<a href="#">4</a>
+				</div>
+			</div>
+			<!-- End Content Slider -->
+			
+			<!-- Products -->
+			<div class="products">
+				<div class="cl">&nbsp;</div>
+				<ul>
+				    <li>
+				    	<a href="#"><img src="css/images/big1.jpg" alt="" /></a>
+				    	<div class="product-info">
+				    		<h3>PROXIMAMENTE</h3>
+				    		<div class="product-desc">
+								
+				    			
+				    			<strong class="price">L.9,999.99</strong>
+				    		</div>
+				    	</div>
+			    	</li>
+			    	<li>
+				    	<a href="#"><img src="css/images/big1.jpg" alt="" /></a>
+				    	<div class="product-info">
+				    		<h3>PROXIMAMENTE</h3>
+				    		<div class="product-desc">
+								
+				    			
+				    			<strong class="price">L.9.999.99</strong>
+				    		</div>
+				    	</div>
+			    	</li>
+			    	<li class="last">
+				    	<a href="#"><img src="css/images/big1.jpg" alt="" /></a>
+				    	<div class="product-info">
+				    		<h3>PROXIMAMENTE</h3>
+				    		<div class="product-desc">
+								
+				    			
+				    			<strong class="price">L.9,999.99</strong>
+				    		</div>
+				    	</div>
+			    	</li>
+				</ul>
+				<div class="cl">&nbsp;</div>
+			</div>
+			<!-- End Products -->
+			
+		</div>
+		<!-- End Content -->
+		
+		<!-- Sidebar -->
+		<div id="sidebar">
+			
+			<!-- Search -->
+			<div class="box search">
+				<h2>Buscar <span></span></h2>
+				<div class="box-content">
+					<form action="" method="post">
+						
+						<label>Producto</label>
+						<input type="text" class="field" />
+						
+						
+						
+						
+						
+						<input type="submit" class="search-submit" value="Buscar" />
+						
+						
+	
+					</form>
+				</div>
+			</div>
+			<!-- End Search -->
+			
+			<!-- Categories -->
+			<div class="box categories">
+				<h2>Categorías <span></span></h2>
+				<div class="box-content">
+					<ul>
+					    <li><a href="#">Categoría1</a></li>
+					    <li><a href="#">Categoría2</a></li>
+					   
+					    <li class="last"><a href="#">Categoría3</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- End Categories -->
+			
+		</div>
+		<!-- End Sidebar -->
+		
+		<div class="cl">&nbsp;</div>
+	</div>
+	<!-- End Main -->
+	
+	<!-- Side Full -->
+	<div class="side-full">
+		
+		
+		
+		
+		
+	</div>
+	<!-- End Side Full -->
+	
+	<!-- Footer -->
+	<div id="footer">
+		<p class="left">
+			<a href="#">Mi Cuenta</a>
+			<span>|</span>
+			<a href="#">Ayuda</a>
+			<span>|</span>
+			
+			
+		</p>
+		<p class="right">
+			&copy; 2018 Shop Around.
+			
+		</p>
+	</div>
+	<!-- End Footer -->
+	
+</div>	
+<!-- End Shell -->
+	
+	
+</body>
 </html>

@@ -1,3 +1,11 @@
+<?php
+   session_start();
+   if($_SESSION['status']==false) { //Si el estado de la sesion es Falsa, osea que no se ha logeado entonces:
+   // CUALQUIER USUARIO REGISTRADO PUEDE VER ESTA PAGINA
+      session_destroy(); //Se destruye la sesion.
+      header("Location: iniciarsesion.php"); //se envia al usuario directo al login.
+   }
+ ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -32,9 +40,9 @@
 		<div id="navigation">
 			<ul>
 			    <li><a href="#" class="active">INICIO</a></li>
-			    <li><a href="iniciarsesion.php">INICIAR SESIÓN</a></li>
-			    <li><a href="registro.php">REGISTRARSE</a></li>
-                            <li><a href="#">CARRITO</a></li>
+			    <!--li><a  class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" name="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" /a></li>
+			    <li><a href="registro.php">CARRITO</a></li-->
+                            <li><a href="logout.php" name= "idsalir" id="idsalir" >SALIR</a></li>
 			    
 			</ul>
 		</div>
@@ -189,6 +197,6 @@
 </div>	
 <!-- End Shell -->
 	
-	
+<script src="js/controlador-principal.js" type="text/javascript"></script>
 </body>
 </html>

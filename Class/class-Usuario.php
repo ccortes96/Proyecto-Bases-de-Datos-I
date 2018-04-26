@@ -66,7 +66,23 @@
 
 		}
 
-		public function insertarRegistro($conexion){
+		public static function insertarRegistro($conexion, $pNombre, $sNombre, $pApellido, $genero, $email, $password){
+
+			$pNombre = $conexion->antiInyeccion($pNombre);
+			$sNombre = $conexion->antiInyeccion($sNombre);
+			$pApellido = $conexion->antiInyeccion($pApellido);
+			$genero = $conexion->antiInyeccion($genero);
+			$email = $conexion->antiInyeccion($email);
+			$password = $conexion->antiInyeccion($password);
+
+			$query_call = sprintf("call SP_USUARIO_CUENTA ('$email', '$pNombre', '$sNombre', '$pApellido', $genero, 2, '$password', 1, 0.00, @_mensaje,@_ans);");
+            $query_select="Select @_mensaje as mensaje,@_ans as ans;";
+
+            $resultados_call=$conexion->ejecutarConsulta($query_call);
+            $resultados_select=$conexion->ejecutarConsulta($query_select);
+            $respuesta=$conexion->obtenerFila($resultados_select);
+
+            return $respuesta["mensaje"];
 
 		}
 
@@ -96,7 +112,6 @@
 				session_start();
 				$id = Usuario::obteneridUsuarioSession($conexion, $email);
 				$_SESSION['status']=true;
-				//$_SESSION['ultimoAcceso'] = date("Y-n-j H:i:s");
 				$_SESSION['idUsuario'] = $id;
 				$_SESSION['nombreCompleto'] = Usuario::obtenerNombreUsuario($conexion, $id);
 				$respuesta['loggedin']=1;

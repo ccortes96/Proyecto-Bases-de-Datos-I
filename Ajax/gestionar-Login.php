@@ -14,7 +14,9 @@
 					$contra=$_POST["pass"];
 				}
 				$respuesta = Usuario::login($conexion, $correo, $contra);
-						echo json_encode($respuesta);
+					echo json_encode($respuesta);
+
+
 				break;
 
 			case 'logout':
