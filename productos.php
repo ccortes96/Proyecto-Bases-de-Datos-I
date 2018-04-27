@@ -29,8 +29,7 @@
 	<!-- JS -->
 	<script src="js/jquery-1.4.1.min.js" type="text/javascript"></script>	
 	<script src="js/jquery.jcarousel.pack.js" type="text/javascript"></script>	
-	<script src="js/jquery-func.js" type="text/javascript"></script>
-	<script src="js/controlador-productos.js"></script>	
+	<script src="js/jquery-func.js" type="text/javascript"></script>	
 	<!--script src="js/jquery-3.3.1.slim.min.js" ></script>
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/jquery-slim.min.js"></script>')</script>
@@ -65,11 +64,7 @@
 
 
 			    <?php
-                  if(isset($_SESSION["status"])==true){
-
-                  	/*$mensaje = "Hola ".$_SESSION["NOMBRE"];
-                  	echo $mensaje;*/
-                    
+                  if(isset($_SESSION["status"])==true){                    
 
                     $boton ="<li><a  id=\"btn_Logout\"name=\"btn_Logout\" href=\"logout.php\">Salir</a></li>";
                     //echo $boton;
@@ -106,73 +101,11 @@
 		<div class="cl">&nbsp;</div>
 		
 		<!-- Content -->
-		<div id="content">
-			
-			<!-- Content Slider -->
-			<div id="slider" class="box">
-				<div id="slider-holder">
-					<ul>
-					    <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
-					    <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
-					    <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
-					    <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
-					    <div class="row">
 
-					</ul>
-				</div>
-				<div id="slider-nav">
-					<a href="#" class="active">1</a>
-					<a href="#">2</a>
-					<a href="#">3</a>
-					<a href="#">4</a>
-				</div>
-			</div>
 			<!-- End Content Slider -->
 			
 			<!-- Products -->
-			
-			<div class="container">
-				<!--div class="cl">&nbsp;</div-->
-				<ul>
-					<div class = "row" id="productos" name="productos">
 
-					</div>
-				    <!--li>
-				    	<a href="#"><img src="css/images/big1.jpg" alt="" /></a>
-				    	<div class="product-info">
-				    		<h3>PROXIMAMENTE</h3>
-				    		<div class="product-desc">
-								
-				    			
-				    			<strong class="price">L.9,999.99</strong>
-				    		</div>
-				    	</div>
-			    	</li>
-			    	<li>
-				    	<a href="#"><img src="css/images/big1.jpg" alt="" /></a>
-				    	<div class="product-info">
-				    		<h3>PROXIMAMENTE</h3>
-				    		<div class="product-desc">
-								
-				    			
-				    			<strong class="price">L.9.999.99</strong>
-				    		</div>
-				    	</div>
-			    	</li>
-			    	<li class="last">
-				    	<a href="#"><img src="css/images/big1.jpg" alt="" /></a>
-				    	<div class="product-info">
-				    		<h3>PROXIMAMENTE</h3>
-				    		<div class="product-desc">
-								
-				    			
-				    			<strong class="price">L.9,999.99</strong>
-				    		</div>
-				    	</div>
-			    	</li-->
-				</ul>
-				<!--div class="cl">&nbsp;</div-->
-			</div>
 			<!-- End Products -->
 			
 		</div>
@@ -191,6 +124,8 @@
 						<input type="text" class="field" />
 						<input type="submit" class="search-submit" value="Buscar" />
 						
+						
+	
 					</form>
 				</div>
 			</div>
@@ -206,29 +141,13 @@
 					   
 					    <li class="last"><a href="#">Categoría3</a></li>
 					</ul-->
-
-
-					<div class="input-group mb-3">
-					  <div class="input-group-prepend">
-					    <label class="input-group-text" for="inputGroupSelect01"></label>
-					  </div>
-					  <select class="custom-select" id="cbx_Depto" name="cbx_Depto">
-					    <option selected>Departamento</option>
-							<?php while($rowDeptos = mysqli_fetch_array($resDeptos)) { ?>
-                            <option value="<?php echo $rowDeptos[0]; ?>" ><?php echo $rowDeptos[1]; ?> </option>
-                            <?php } ?>
-					  </select>
-					  <select id="cbx_Subdepto" name="cbx_Subdepto"></select>
-					</div>
-
-
-					<!--select id="cbx_Depto" name="cbx_Depto">
+					<select id="cbx_Depto" name="cbx_Depto">
                         <option value='0'>Selecciona un Departamento</option>
                             <?php while($rowDeptos = mysqli_fetch_array($resDeptos)) { ?>
                             <option value="<?php echo $rowDeptos[0]; ?>" ><?php echo $rowDeptos[1]; ?> </option>
                             <?php } ?>
                     </select>
-                    <select id="cbx_Subdepto" name="cbx_Subdepto"></select-->
+                    <select id="cbx_Subdepto" name="cbx_Subdepto"></select>
 				</div>
 			</div>
 			<!-- End Categories -->

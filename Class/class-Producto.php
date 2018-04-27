@@ -143,8 +143,16 @@
 
 		}
 
-		public function seleccionar($conexion){
+		public static function seleccionar($conexion){
+			$query_call = "SELECT idProducto 'producto' , nombre 'nombre' FROM Producto;";
 
+            $query_select = $conexion -> ejecutarConsulta($query_call);
+            $productos = array();
+
+            while($respuesta=$conexion->obtenerFila($query_select)){
+                $productos[]=$respuesta;
+            }
+            return $productos;
 		}
 
 		public function insertarRegistro($conexion){
