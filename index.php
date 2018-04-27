@@ -19,18 +19,19 @@
 </html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-	<title>Proyecto Final</title>
+	<title>VOL-UNAH</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 	<!--[if lte IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
 	
 	<meta name="keywwords" content="Shop Around - Great free html template for on-line shop. Use it as a start point for your on line business. The template can be easily implemented in many open source E-commerce platforms" />
 	<meta name="description" content="Shop Around - Great free html template for on-line shop. Use it as a start point for your on line business. The template can be easily implemented in many open source E-commerce platforms" />
-	
-	<!-- JS -->
+			<!-- JS -->
 	<script src="js/jquery-1.4.1.min.js" type="text/javascript"></script>	
 	<script src="js/jquery.jcarousel.pack.js" type="text/javascript"></script>	
 	<script src="js/jquery-func.js" type="text/javascript"></script>
-	<script src="js/controlador-productos.js"></script>	
+	<!--script src="js/controlador-productos.js"></script-->
+	<!--script src="js/controlador-index"></script-->	
+	<!--script src="js/controlador-index"></script-->
 	<!--script src="js/jquery-3.3.1.slim.min.js" ></script>
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/jquery-slim.min.js"></script>')</script>
@@ -38,6 +39,7 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script-->
 	<!-- End JS -->
+
 	<!-- Bootstrap core CSS -->
     <!--link href="css/bootstrap.min.css" rel="stylesheet"-->
 
@@ -54,22 +56,19 @@
 	
 	<!-- Header -->	
 	<div id="header">
-		<h1 id="logo"><a href="#">shoparound</a></h1>	
-		
-	
+		<!--h1 id="logo"><a href="index.php">shoparound</a></h1-->	
 		
 		<!-- Navigation -->
 		<div id="navigation">
 			<ul>
 			    <li><a href="index.php" class="active">INICIO</a></li>
 
-
 			    <?php
                   if(isset($_SESSION["status"])==true){
 
                   	/*$mensaje = "Hola ".$_SESSION["NOMBRE"];
                   	echo $mensaje;*/
-                    
+                    $nombre = "<li><a  id=\"txt_nombre\"name=\"txt_nombre\" href=\"Cuenta.php\"aria-labelledby=\"txt_nombre\"</a></li>";
 
                     $boton ="<li><a  id=\"btn_Logout\"name=\"btn_Logout\" href=\"logout.php\">Salir</a></li>";
                     //echo $boton;
@@ -80,7 +79,7 @@
                     $boton2 = "<li><a  id=\"btn_Carrito\"name=\"btn_Carrito\" href=\"Carrito.php\">Carrito</a></li>";
                     //echo $boton2;
 
-                    $botones=$boton1.$boton.$boton2;
+                    $botones=$nombre.$boton1.$boton.$boton2;
 
                     echo $botones;
 
@@ -112,10 +111,11 @@
 			<div id="slider" class="box">
 				<div id="slider-holder">
 					<ul>
-					    <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
-					    <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
-					    <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
-					    <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
+
+					    <li><a href="#"><img src="css/images/www.a.com.jpg" width="600" height="300" alt="" /></a></li>
+					    <li><a href="#"><img src="css/images/www.b.com.jpg" alt="" /></a></li>
+					    <li><a href="#"><img src="css/images/www.c.com.jpg" alt="" /></a></li>
+					    <li><a href="#"><img src="css/images/www.d.com.jpg" alt="" /></a></li>
 					    <div class="row">
 
 					</ul>
@@ -207,19 +207,21 @@
 					    <li class="last"><a href="#">Categoría3</a></li>
 					</ul-->
 
-
-					<div class="input-group mb-3">
-					  <div class="input-group-prepend">
-					    <label class="input-group-text" for="inputGroupSelect01"></label>
-					  </div>
-					  <select class="custom-select" id="cbx_Depto" name="cbx_Depto">
-					    <option selected>Departamento</option>
-							<?php while($rowDeptos = mysqli_fetch_array($resDeptos)) { ?>
+					<!--ul>
+					    <li><a href="#">Categoría1</a></li>
+					    <li><a href="#">Categoría2</a></li>
+					   
+					    <li class="last"><a href="#">Categoría3</a></li>
+					</ul-->
+					<select id="cbx_Depto" name="cbx_Depto">
+                        <option value='0'>Selecciona un Departamento</option>
+                            <?php while($rowDeptos = mysqli_fetch_array($resDeptos)) { ?>
                             <option value="<?php echo $rowDeptos[0]; ?>" ><?php echo $rowDeptos[1]; ?> </option>
                             <?php } ?>
-					  </select>
-					  <select id="cbx_Subdepto" name="cbx_Subdepto"></select>
-					</div>
+                    </select>
+                    <select id="cbx_Subdepto" name="cbx_Subdepto"></select>
+
+			<!-- End Categories -->
 
 
 					<!--select id="cbx_Depto" name="cbx_Depto">
@@ -253,14 +255,14 @@
 	<!-- Footer -->
 	<div id="footer">
 		<p class="left">
-			<a href="#">Mi Cuenta</a>
+			<a href="Cuenta.php">Mi Cuenta</a>
 			<span>|</span>
 			<a href="#">Ayuda</a>
 			<span>|</span>
 			  <div class="col-sm-6">
 		</p>
 		<p class="right">
-			&copy; 2018 Shop Around.
+			&copy; 2018 VOL-UNAH.
 			
 		</p>
 	</div>
@@ -292,6 +294,7 @@
         });
 
     </script>
-	
+<!--script src="js/controlador-productos.js"></script-->
+<!--script src="js/controlador-index"></script-->
 </body>
 </html>

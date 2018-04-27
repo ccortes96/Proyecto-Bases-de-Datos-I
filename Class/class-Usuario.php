@@ -142,9 +142,7 @@
 
 		public static function obtenerNombreUsuario($conexion, $idUsuario)
 		{
-			$sql = "SELECT concat(u.pNombre, ' ', u.sNombre, ' ', u.pApellido) nombre 
-				from usuario u 
-				WHERE u.idUsuario = ".$idUsuario;
+			$sql = "SELECT FN_NOMBRE_USUARIO($idUsuario) AS `nombre`;";
 			$resultado=$conexion->ejecutarConsulta($sql);
 			$respuesta=$conexion->obtenerFila($resultado);
 			return $respuesta['nombre'];

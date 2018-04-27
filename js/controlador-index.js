@@ -12,7 +12,7 @@ function listarNombreUsuario(){
 			},
 			success:function(respuesta){
 				var nombre = respuesta;
-				$("#dropdown01").html(nombre);
+				$("#txt_nombre").html(nombre);
 			},
 			error:function(e){
 				console.log(e);

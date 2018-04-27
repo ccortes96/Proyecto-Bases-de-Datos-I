@@ -9,7 +9,7 @@ $(document).on("submit","#form-registro",function(event){
         success:function(respuesta){
             alert(respuesta);
             if(respuesta == 'Registro realizado correctamente'){
-            window.location='index.php';
+            window.location='iniciarsesion.php';
 			}
 		}
 	});

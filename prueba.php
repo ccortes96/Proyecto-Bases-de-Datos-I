@@ -1,9 +1,9 @@
 <?php
-	include("Class/class-Producto.php");
+	include("Class/class-Usuario.php");
 	include("Conexion/class-conexion.php");
 
 	$conexion = new Conexion();
-    $respuesta = Producto::seleccionar($conexion);
+    $respuesta = Usuario::obtenerNombreUsuario($conexion,1);
     var_dump($respuesta);
     $conexion->cerrarConexion();
 
