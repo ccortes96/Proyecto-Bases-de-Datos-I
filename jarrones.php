@@ -10,7 +10,7 @@ session_start();
     sub.idSubdepartamento=pps.Subdepartamento_idSubdepartamento
     inner join Departamento dep on dep.idDepartamento
     =sub.Departamento_idDepartamento inner join ImagenProducto img on img.Producto_idProducto =pro.idProducto
-    where sub.idSubdepartamento=10;";
+    where sub.idSubdepartamento=13;";
 
     $result = $conexion->ejecutarConsulta($sql);
 

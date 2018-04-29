@@ -40,7 +40,7 @@
 
 					
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Nombre Requerido">
-						<input class="input100" type="text" name="idpnombre" id="idpnombre" placeholder="Primer Nombre">
+						<input class="input100" type="text" name="idpnombre" id="idpnombre" placeholder="Primer Nombre" required>
 						<span class="focus-input100"></span>
 					</div>
 					

@@ -113,7 +113,7 @@
 				$id = Usuario::obteneridUsuarioSession($conexion, $email);
 				$_SESSION['status']=true;
 				$_SESSION['idUsuario'] = $id;
-				$_SESSION['nombreCompleto'] = Usuario::obtenerNombreUsuario($conexion, $id);
+				$_SESSION['nombre'] = Usuario::obtenerNombreUsuario($conexion, $id);
 				$respuesta['loggedin']=1;
 				$respuesta['mensajeSesion']="Tiene acceso";
 			}

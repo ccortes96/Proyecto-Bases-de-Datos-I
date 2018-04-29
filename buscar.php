@@ -2,7 +2,7 @@
 session_start();
     include("Conexion/class-conexion.php");
     $conexion = new Conexion();
-
+    $producto=$_POST["producto"];
     $sql = "select * from Producto pro inner join
     ProductoPorSubdepartamento pps on
     pro.idProducto=pps.Producto_idProducto
@@ -10,7 +10,7 @@ session_start();
     sub.idSubdepartamento=pps.Subdepartamento_idSubdepartamento
     inner join Departamento dep on dep.idDepartamento
     =sub.Departamento_idDepartamento inner join ImagenProducto img on img.Producto_idProducto =pro.idProducto
-    where sub.idSubdepartamento=10;";
+    where pro.nombre like '%$producto%';";
 
     $result = $conexion->ejecutarConsulta($sql);
 
@@ -96,12 +96,6 @@ session_start();
 
                         <li><a href="#"><img src="css/images/banner.jpg" width="980" height="256" /></a></li>
                 </div>
-                <!--div id="slider-nav">
-                    <a href="#" class="active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                </div-->
             </div>
             <!-- End Content Slider -->
 
