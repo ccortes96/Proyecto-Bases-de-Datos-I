@@ -60,7 +60,7 @@
                     $boton1 = "<li><a  id=\"btn_Cuenta\"name=\"btn_Cuenta\" href=\"Cuenta.php\">Cuenta</a></li>";
                     //echo $boton1;
 
-                    $boton2 = "<li><a  id=\"btn_Carrito\"name=\"btn_Carrito\" href=\"Carrito.php\">Carrito</a></li>";
+                    $boton2 = "<li><a  id=\"btn_Carrito\"name=\"btn_Carrito\" href=\"productoscarrito.php\">Carrito</a></li>";
                     //echo $boton2;
 
                     $botones=$boton1.$boton.$boton2;
@@ -104,25 +104,37 @@
             <!-- End Content Slider -->
 
             <!-- Products -->
-            <?php
+			<?php
                 if ($result->num_rows > 0) {
                 // output data of each row
                     while ($row = $result->fetch_assoc()) {
-                        echo    '<div class="container" id = "container">'.
+                        echo    
+                        '<div class="container" id = "container">'.
+                        '<form action="verproducto.php" method="get">' .
                                 '<br>'.
                                 '<br>'.
-                                '           <h3 class="">'.$row["nombre"] .
-                                '           </h3>'.
-                                '                   <h5 class="">'.'</h5>'.
-                                //'                   <p class="card-text">Precio de venta: </p>'.
-                                '                   <strong class="price">L.' . $row["precioVenta"] . '</strong>'.
-                                '                   <img src="css/images/'.$row["imagenURL"].'.jpg" alt="" width="150" height="150">'.
-                                '                   <p><a class="btn btn-primary" href="#" role="button">Ver Producto &raquo;</a></p>'.
-                                '           </div>'.
-                               
-                                
-                                '
-                        ';
+                                '<h3 class="">'.$row["nombre"] .
+                                '</h3>'.
+                                '<h5 class="">'.'</h5>'.
+                                '<strong class="price">L.' . $row["precioVenta"] . '</strong>'.
+                                '<img src="css/images/'.$row["imagenURL"].'.jpg" alt="" width="150" height="150">'.
+                                '<input type="submit" value="Ver producto">'.
+                                '</div>'.
+                                '   <input type="hidden" name="idProducto" value="' . $row['idProducto'] . '" >
+                                        <input type="hidden" name="nombre" value="' . $row['nombre'] . '" >
+                                        <input type="hidden" name="precioventa" value="' . $row['precioVenta'] . '" >
+                                        <input type="hidden" name="preciocosto" value="' . $row['precioCosto'] . '" >
+                                        <input type="hidden" name="descripcion" value="' . $row['descripcion'] . '" >
+                                        <input type="hidden" name="peso" value="' . $row['peso'] . '" >
+                                        <input type="hidden" name="alto" value="' . $row['alto'] . '" >
+                                        <input type="hidden" name="ancho" value="' . $row['ancho'] . '" >
+                                        <input type="hidden" name="largo" value="' . $row['largo'] . '" >
+                                        <input type="hidden" name="color" value="' . $row['color'] . '" >
+                                        <input type="hidden" name="marcaid" value="' . $row['Marca_idMarca'] . '" >
+                                        <input type="hidden" name="tipoproductoid" value="' . $row['TipoProducto_idTipoProducto'] . '" >
+                                        <input type="hidden" name="imagen" value="' . $row['imagenURL'] . '" >
+                                        ' .
+                                '</form>' .'';
                     }
                 } 
                 else {
@@ -249,7 +261,7 @@
                         <p> 
                             <?php  
                             if(isset($_SESSION["status"])==true){
-                            $mensaje = "Usuario: ".$_SESSION["nombre"];
+                            $mensaje = "Usuario: ".$_SESSION["nombre"].$_SESSION["idUsuario"].$_SESSION["idCarrito"].$_SESSION["idCuenta"];
                             echo $mensaje;
                             } ?> 
                         </p>

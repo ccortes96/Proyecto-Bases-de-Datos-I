@@ -38,25 +38,24 @@
 						Registrarse
 					</span>
 
-					
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Nombre Requerido">
 						<input class="input100" type="text" name="idpnombre" id="idpnombre" placeholder="Primer Nombre" required>
 						<span class="focus-input100"></span>
 					</div>
 					
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Nombre Requerido">
-						<input class="input100" type="text" name="idsnombre" id="idsnombre" placeholder="Segundo Nombre">
+						<input class="input100" type="text" name="idsnombre" id="idsnombre" placeholder="Segundo Nombre" required>
 						<span class="focus-input100"></span>
 					</div>
 					
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Apellido Requerido">
-						<input class="input100" type="text" name="idpapellido" id="idpapellido" placeholder="Primer Apellido">
+						<input class="input100" type="text" name="idpapellido" id="idpapellido" placeholder="Primer Apellido" required>
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="dropdown validate-input m-b-16">
 
-					  	<select type="text" id="cbx_SeleccioneGenero" name="cbx_SeleccioneGenero" class="form-control m-b-16" placeholder="Seleccione Genero"  data-rule="minlen:4" data-msg="Seleccione un Genero">
+					  	<select type="text" id="cbx_SeleccioneGenero" name="cbx_SeleccioneGenero" class="form-control m-b-16" placeholder="Seleccione Genero"  data-rule="minlen:4" data-msg="Seleccione un Genero" required>
                       	<option value='0'>Seleccione un Genero</option>
                         <option value='1'>Masculino</option>
                         <option value='2'>Femenino</option>

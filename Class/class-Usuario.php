@@ -111,9 +111,13 @@
 			if($respuesta['ans']==0){
 				session_start();
 				$id = Usuario::obteneridUsuarioSession($conexion, $email);
+				$idCarrito = Usuario::obteneridCarritoSession($conexion, $id);
+				$idCuenta = Usuario::obteneridCuenta($conexion, $id);
+				$_SESSION['idCarrito'] = $idCarrito;
 				$_SESSION['status']=true;
 				$_SESSION['idUsuario'] = $id;
 				$_SESSION['nombre'] = Usuario::obtenerNombreUsuario($conexion, $id);
+				$_SESSION['idCuenta'] = $idCuenta;
 				$respuesta['loggedin']=1;
 				$respuesta['mensajeSesion']="Tiene acceso";
 			}
@@ -131,12 +135,21 @@
 
 		public static function obteneridUsuarioSession($conexion, $email)
 		{
-			/*Con este metodo se retornara el id del usuario, llamando a la funcion FN_OBTENER_ID_USUARIO, todo esto para asignarle este dato a la sesión.*/
 			$sql = sprintf("SELECT FN_OBTENER_ID_USUARIO ('%s') AS IdUsuarioFunction;",
 			$conexion->antiInyeccion($email));
 			$resultado=$conexion->ejecutarConsulta($sql);
 			$respuesta=$conexion->obtenerFila($resultado);
 			$idUsuarioRespuesta = (int) $respuesta['IdUsuarioFunction'];
+			return $idUsuarioRespuesta;
+		}
+
+		public static function obteneridCarritoSession($conexion, $id)
+		{
+			$sql = sprintf("SELECT FN_OBTENER_ID_CARRITO ('%s') AS idCarrito;",
+			$conexion->antiInyeccion($id));
+			$resultado=$conexion->ejecutarConsulta($sql);
+			$respuesta=$conexion->obtenerFila($resultado);
+			$idUsuarioRespuesta = (int) $respuesta['idCarrito'];
 			return $idUsuarioRespuesta;
 		}
 
@@ -146,6 +159,14 @@
 			$resultado=$conexion->ejecutarConsulta($sql);
 			$respuesta=$conexion->obtenerFila($resultado);
 			return $respuesta['nombre'];
+		}
+
+		public static function obteneridCuenta($conexion, $idUsuario)
+		{
+			$sql = "SELECT FN_OBTENER_ID_CUENTA($idUsuario) AS `idCuenta`;";
+			$resultado=$conexion->ejecutarConsulta($sql);
+			$respuesta=$conexion->obtenerFila($resultado);
+			return $respuesta['idCuenta'];
 		}
 
 	}

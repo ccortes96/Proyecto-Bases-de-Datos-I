@@ -14,6 +14,7 @@ SP:BEGIN
     DECLARE vnConteo      INT DEFAULT 0;
     DECLARE vnIdProducto  INT;
     DECLARE vnCantidad    INT;
+    DECLARE vnExistentes  INT;
 
     SET autocommit=0;
     START TRANSACTION;
@@ -33,8 +34,17 @@ SP:BEGIN
 
       ELSE
 
-        INSERT INTO DetalleCarrito (Producto_idProducto, Carrito_idCarrito, cantidad) VALUES (pnidProducto, pnidCarrito, pnCantidad);
-        UPDATE Producto SET cantidad = (cantidad - pnCantidad) WHERE idProducto = pnidProducto;
+        SELECT COUNT(*) INTO vnExistentes FROM DetalleCarrito WHERE Producto_idProducto = pnidProducto AND Carrito_idCarrito = pnidCarrito;
+        IF vnExistentes > 0 THEN
+          UPDATE DetalleCarrito SET cantidad = (cantidad + pnCantidad) WHERE Producto_idProducto = pnidProducto AND Carrito_idCarrito = pnidCarrito;
+          UPDATE Producto SET cantidad = (cantidad - pnCantidad) WHERE idProducto = pnidProducto;
+
+        ELSE
+
+          INSERT INTO DetalleCarrito (Producto_idProducto, Carrito_idCarrito, cantidad) VALUES (pnidProducto, pnidCarrito, pnCantidad);
+          UPDATE Producto SET cantidad = (cantidad - pnCantidad) WHERE idProducto = pnidProducto;
+        END IF;
+
         SET pcMensaje = 'Producto agregado con éxito.';
         SET pbOcurrioError = FALSE;
         COMMIT;
