@@ -25,6 +25,7 @@
         <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
         <title>VOL-UNAH</title>
        <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+       <link rel="icon" type="image/png" href="v3.ico"/>
 
         <meta name="keywwords" content="Shop Around - Great free html template for on-line shop. Use it as a start point for your on line business. The template can be easily implemented in many open source E-commerce platforms" />
         <meta name="description" content="Shop Around - Great free html template for on-line shop. Use it as a start point for your on line business. The template can be easily implemented in many open source E-commerce platforms" />
@@ -35,6 +36,15 @@
         <script src="js/jquery.jcarousel.pack.js" type="text/javascript"></script>  
         <script src="js/jquery-func.js" type="text/javascript"></script>    
         <!-- End JS -->
+
+            <!-- Bootstrap core CSS -->
+        <!--link href="css/bootstrap.min.css" rel="stylesheet">
+
+        
+        <link href="css/jumbotron.css" rel="stylesheet">
+
+        
+        <link href="css/custom.css" rel="stylesheet"-->
 
 </head>
 <body>
@@ -57,7 +67,7 @@
                     $boton ="<li><a  id=\"btn_Logout\"name=\"btn_Logout\" href=\"logout.php\">Salir</a></li>";
                     //echo $boton;
 
-                    $boton1 = "<li><a  id=\"btn_Cuenta\"name=\"btn_Cuenta\" href=\"Cuenta.php\">Cuenta</a></li>";
+                    $boton1 = "<li><a  id=\"btn_Cuenta\"name=\"btn_Cuenta\" href=\"cuenta.php\">Cuenta</a></li>";
                     //echo $boton1;
 
                     $boton2 = "<li><a  id=\"btn_Carrito\"name=\"btn_Carrito\" href=\"productoscarrito.php\">Carrito</a></li>";

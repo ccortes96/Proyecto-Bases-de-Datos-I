@@ -1,20 +1,20 @@
 <?php
 session_start();
 
-include("Conexion/class-conexion.php");
-$conexion = new Conexion();
+    include("Conexion/class-conexion.php");
+    $conexion = new Conexion();
 
-$idCarrito = $_SESSION['idCarrito'];
+    $idCarrito = $_SESSION['idCarrito'];
 
-$sql = "SELECT * FROM cuenta cu INNER JOIN carrito car on cu.idCuenta=car.Cuenta_idCuenta 
-INNER JOIN detallecarrito detacar on detacar.Carrito_idCarrito=car.idCarrito 
-INNER JOIN Producto pro on pro.idProducto=detacar.Producto_idProducto
-INNER JOIN imagenproducto ima on ima.Producto_idProducto=pro.idProducto WHERE cu.idCuenta = $idCarrito";
+    $sql = "SELECT * FROM cuenta cu INNER JOIN carrito car on cu.idCuenta=car.Cuenta_idCuenta 
+    INNER JOIN detallecarrito detacar on detacar.Carrito_idCarrito=car.idCarrito 
+    INNER JOIN Producto pro on pro.idProducto=detacar.Producto_idProducto
+    INNER JOIN imagenproducto ima on ima.Producto_idProducto=pro.idProducto WHERE cu.idCuenta = $idCarrito";
 
-$result = $conexion->ejecutarConsulta($sql);
+    $result = $conexion->ejecutarConsulta($sql);
 
-$sql2 = 'select DISTINCT dep.descripcion from Departamento dep inner join Subdepartamento sub on dep.idDepartamento=sub.Departamento_idDepartamento';
-$result2 = $conexion->ejecutarConsulta($sql2);
+    $sql2 = 'select DISTINCT dep.descripcion from Departamento dep inner join Subdepartamento sub on dep.idDepartamento=sub.Departamento_idDepartamento';
+    $result2 = $conexion->ejecutarConsulta($sql2);
 ?>
 
 

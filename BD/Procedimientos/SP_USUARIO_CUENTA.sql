@@ -39,6 +39,10 @@ SP: BEGIN
       SET vnIdnuevo = LAST_INSERT_ID();
       INSERT INTO CorreoUsuario (descripcion, Usuario_idUsuario) VALUES (pcCorreoUsuario, vnIdnuevo);
       INSERT INTO Cuenta (TipoCuenta_idTipoCuenta, Usuario_idUsuario, fechaRegistro, contrasenia, Idioma_idIdioma, Saldo) VALUES (pnTipoCuenta, vnIdnuevo, (SELECT CURDATE()), pcContrasenia, pnIdioma, pnSaldo);
+      INSERT INTO Celular(descripcion, Usuario_idUsuario) VALUES ("NO SE ESPECIFICÓ",vnIdnuevo);
+      INSERT INTO TelefonoUsuario(descripcion, Usuario_idUsuario) VALUES ("NO SE ESPECIFICÓ",vnIdnuevo);
+      INSERT INTO DireccionUsuario(pais, estado_depto, ciudad, colonia, sector_calle, casa_edificio, codigoPostal, Usuario_idUsuario) 
+      VALUES ("NO SE ESPECIFICÓ", "NO SE ESPECIFICÓ", "NO SE ESPECIFICÓ", "NO SE ESPECIFICÓ", "NO SE ESPECIFICÓ", "NO SE ESPECIFICÓ", 00000, vnIdnuevo);
       SET pcMensaje='Registro realizado correctamente';
       COMMIT;
       SET pbOcurrioError=FALSE;
