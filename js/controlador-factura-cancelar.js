@@ -1,14 +1,13 @@
 $(function () {
-	alert(".....");	
+	//alert("Hola");	
 $(document).on("submit","#btn-cancelar",function(event){
 	idFactura=$("#idFactura").val();
-	alert(idFactura);
+	//alert(idFactura);
 	event.preventDefault();
-
-	$.ajax ( {
-		url: "Ajax/gestionar-Factura.php",
-		dataType: "JSON",
-		method: "POST",
+	$.ajax({
+		url:"Ajax/gestionar-Factura.php",
+		dataType:"JSON",
+		method:"POST",
 		data:{
 				"accion":"cancelar",
 				"idFactura":idFactura
@@ -16,8 +15,8 @@ $(document).on("submit","#btn-cancelar",function(event){
 
 		success:function(respuesta){
 
-			alert("Hola3");
-			alert(respuesta.mensaje);
+			//alert("Hola3");
+			//alert(respuesta.mensaje);
 			console.log(respuesta);
 			if (respuesta.ans=="0") {
 				alert(respuesta.mensaje)

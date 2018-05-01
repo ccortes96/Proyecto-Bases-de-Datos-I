@@ -10,7 +10,7 @@ $(document).on("submit","#btn-cancelar",function(event){
 		method:"POST",
 		data:{
 				"accion":"cancelar",
-				"idFactura":idFactura,
+				"idFactura":idFactura
 			},
 
 		success:function(respuesta){

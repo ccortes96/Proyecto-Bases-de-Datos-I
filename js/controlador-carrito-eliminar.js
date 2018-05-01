@@ -10,13 +10,13 @@ $(document).on("submit","#form-car",function(event){
 		method:"POST",
 		data:{
 				"accion":"eliminar",
-				"idProducto":idProducto,
+				"idProducto":idProducto
 			},
 
 		success:function(respuesta){
 
 			//alert("Hola3");
-			alert(respuesta.mensaje);
+			//alert(respuesta.mensaje);
 			console.log(respuesta);
 			if (respuesta.ans=="0") {
 				alert(respuesta.mensaje)

@@ -7,7 +7,6 @@ CREATE PROCEDURE SP_PAGAR_FACTURA(
   IN pnidFactura          INT,
   IN pnidFormaEnvio       INT,
   IN pnidClaseEnvio       INT,
-  IN pnidTipoEnvio        INT,
   IN pnidEmpresaEnvio     INT,
   IN pnidDireccionUsuario INT,
   OUT pcMensaje           VARCHAR(1000),

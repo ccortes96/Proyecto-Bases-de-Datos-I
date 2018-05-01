@@ -16,7 +16,7 @@ SP:BEGIN
     SET pbOcurrioError = TRUE;
 
 
-    SELECT COUNT(*) INTO vnConteo FROM Factura WHERE idFactura = pnidFactura;
+    SELECT COUNT(*) INTO vnConteo FROM Factura WHERE idFactura = pnidFactura AND estado = 'P';
     IF vnConteo>0 THEN
       DELETE FROM DetalleFactura WHERE Factura_idFactura = pnidFactura;
       DELETE FROM Factura WHERE idFactura = pnidFactura;

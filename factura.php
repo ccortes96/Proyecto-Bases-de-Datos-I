@@ -8,7 +8,7 @@ session_start();
 
         $idCuenta = $_SESSION['idCuenta'];
         
-        $query4 = 'SELECT idFactura FROM Factura WHERE Carrito_idCarrito = '.$_SESSION['idCarrito'].' ;';
+        $query4 = 'SELECT idFactura FROM Factura WHERE Carrito_idCarrito = '.$_SESSION['idCarrito'].'  AND estado = "P";';
         $resIDF = $conexion->ejecutarConsulta($query4);
         $resIDF1 = $conexion->obtenerFila($resIDF);
         $resIDF2 = $resIDF1['idFactura'];
@@ -217,70 +217,70 @@ session_start();
 
 
         </div>
-              <!-- Forma de envío -->  
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <label class="input-group-text" for="idFormaEnvio">...Forma de envío...</label>
-                  </div>
-                  <select class="custom-select" id="idFormaEnvio" required>
-                    <option selected>Elija</option>
-                      <?php while($rowFEnvios = mysqli_fetch_array($resFEnvios)) { ?>
-                        <option value="<?php echo $rowFEnvios[0]; ?>" ><?php echo $rowFEnvios[1]; ?> </option>
-                      <?php } ?>
-                  </select>
-                </div>
 
-                <!-- Clase de envío -->
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <label class="input-group-text" for="idClaseEnvio">....Clase de envío....</label>
-                  </div>
-                  <select class="custom-select" id="idClaseEnvio" required>
-                    <option selected>Elija</option>
-                      <?php while($rowCEnvios = mysqli_fetch_array($resCEnvios)) { ?>
-                        <option value="<?php echo $rowCEnvios[0]; ?>" ><?php echo $rowCEnvios[1]; ?> </option>
-                      <?php } ?>
-                  </select>
-                </div>
+    <form name="btn-pagar" id="btn-pagar">
+      <!-- Forma de envío --> 
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="idFormaEnvio">...Forma de envío...</label>
+        </div>
+        <select class="custom-select" id="idFormaEnvio" name="idFormaEnvio" required>
+          <option selected>Elija</option>
+            <?php while($rowFEnvios = mysqli_fetch_array($resFEnvios)) { ?>
+              <option value="<?php echo $rowFEnvios[0]; ?>" ><?php echo $rowFEnvios[1]; ?> </option>
+            <?php } ?>
+        </select>
+      </div>
 
-
-                <!-- Empresa de envío -->
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <label class="input-group-text" for="idEmpresaEnvio">.Empresa de envío.</label>
-                  </div>
-                  <select class="custom-select" id="idEmpresaEnvio" required>
-                    <option selected>Elija</option>
-                      <?php while($rowEEnvios = mysqli_fetch_array($resEEnvios)) { ?>
-                        <option value="<?php echo $rowEEnvios[0]; ?>" ><?php echo $rowEEnvios[1]; ?> </option>
-                      <?php } ?>
-                  </select>
-                </div>
+      <!-- Clase de envío -->
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="idClaseEnvio">....Clase de envío....</label>
+        </div>
+        <select class="custom-select" name="idClaseEnvio" id="idClaseEnvio" required>
+          <option selected>Elija</option>
+            <?php while($rowCEnvios = mysqli_fetch_array($resCEnvios)) { ?>
+              <option value="<?php echo $rowCEnvios[0]; ?>" ><?php echo $rowCEnvios[1]; ?> </option>
+            <?php } ?>
+        </select>
+      </div>
 
 
-                <!-- Dirección de envío -->
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <label class="input-group-text" for="idEmpresaEnvio">Dirección de envío</label>
-                  </div>
-                  <select class="custom-select" id="idDireccionEnvio" required>
-                    <option selected>Elija</option>
-                      <?php while($rowDEnvios = mysqli_fetch_array($resDireccion)) { ?>
-                        <option value="<?php echo $rowDEnvios[0]; ?>" ><?php $dir=($rowDEnvios['pais'].', '.$rowDEnvios['estado_depto'].', '.$rowDEnvios['ciudad'].', '.$rowDEnvios['colonia'].', '.$rowDEnvios['sector_calle'].', '.$rowDEnvios['casa_edificio'].', '.$rowDEnvios['codigoPostal']);  echo $dir; ?> </option>
-                      <?php } ?>
-                  </select>
-                </div>
-
-                <form name="btn-pagar" id="btn-pagar">
-                  <button type="submit" class="btn btn-primary btn-outline-info btn-block" name="btn-pagar" id="btn-pagar">Pagar </button>
-                </form>
-                
+      <!-- Empresa de envío -->
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="idEmpresaEnvio">.Empresa de envío.</label>
+        </div>
+        <select class="custom-select" name="idEmpresaEnvio" id="idEmpresaEnvio" required>
+          <option selected>Elija</option>
+            <?php while($rowEEnvios = mysqli_fetch_array($resEEnvios)) { ?>
+              <option value="<?php echo $rowEEnvios[0]; ?>" ><?php echo $rowEEnvios[1]; ?> </option>
+            <?php } ?>
+        </select>
+      </div>
 
 
-                <form  name="btn-cancelar" id="btn-cancelar">
-                  <input type="hidden" name="idFactura" value="<?php echo $resIDF2 ?>" id="idFactura">
-                  <input type="submit" class="btn btn-primary btn-outline-danger btn-block" name="btn-cancelar" id="btn-cancelar" value="Cancelar">
-                </form>
+      <!-- Dirección de envío -->
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="idDireccionEnvio">Dirección de envío</label>
+        </div>
+        <select class="custom-select" name="idDireccionEnvio" id="idDireccionEnvio" required>
+          <option selected>Elija</option>
+            <?php while($rowDEnvios = mysqli_fetch_array($resDireccion)) { ?>
+              <option value="<?php echo $rowDEnvios[0]; ?>" ><?php $dir=($rowDEnvios['pais'].', '.$rowDEnvios['estado_depto'].', '.$rowDEnvios['ciudad'].', '.$rowDEnvios['colonia'].', '.$rowDEnvios['sector_calle'].', '.$rowDEnvios['casa_edificio'].', '.$rowDEnvios['codigoPostal']);  echo $dir; ?> </option>
+            <?php } ?>
+        </select>
+      </div>
+      <input type="hidden" name="idFactura" id="idFactura" value="<?php echo $resIDF2; ?>">
+        <button type="submit" class="btn btn-primary btn-outline-info btn-block" name="btn-pagar" id="btn-pagar">Pagar</button>
+    </form>
+      
+
+    <form  name="btn-cancelar" id="btn-cancelar">
+      <input type="hidden" name="idFactura" value="<?php echo $resIDF2 ?>" id="idFactura">
+      <input type="submit" class="btn btn-primary btn-outline-danger btn-block" name="btn-cancelar" id="btn-cancelar" value="Cancelar">
+    </form>
 
                   
       </div>
@@ -310,7 +310,9 @@ session_start();
     <script src="js/popper.min.js.descarga"></script>
     <script src="js/bootstrap.min.js.descarga"></script>
     <script src="js/holder.min.js.descarga"></script>
-    <script src="js/controlador-factura-cancelar2.js"></script>
+    <script src="js/controlador-factura-cancelar.js"></script>
+    <script src="js/controlador-factura-pagar"></script>
+    <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
    
   
 
