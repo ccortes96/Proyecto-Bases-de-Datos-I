@@ -15,6 +15,18 @@ session_start();
 
     $sql2 = 'select DISTINCT dep.descripcion from Departamento dep inner join Subdepartamento sub on dep.idDepartamento=sub.Departamento_idDepartamento';
     $result2 = $conexion->ejecutarConsulta($sql2);
+
+
+    $sql3 = "SELECT * FROM `tipoimpuesto` WHERE estado <> 'I' and idTipoImpuesto <> 16;";
+    $result3 = $conexion->ejecutarConsulta($sql3);
+    $res3 = $conexion->obtenerFila($result3);
+    $r3 = $res3['idTipoImpuesto'];
+
+
+    $sql4 = "SELECT * FROM descuento WHERE estado <> 'I' and idDescuento <> 16;;";
+    $result4 = $conexion->ejecutarConsulta($sql4);
+    $res4 = $conexion->obtenerFila($result4);
+    $r4 = $res4['idDescuento']; 
 ?>
 
 
@@ -33,6 +45,7 @@ session_start();
         <script src="js/jquery.jcarousel.pack.js" type="text/javascript"></script>  
         <script src="js/jquery-func.js" type="text/javascript"></script>
         <script src="js/controlador-carrito-eliminar.js"></script>
+        <script src="js/controlador-carrito-facturar.js"></script>
         <!-- End JS -->
 
     </head>
@@ -59,10 +72,8 @@ session_start();
                             $boton1 = "<li><a  id=\"btn_Cuenta\"name=\"btn_Cuenta\" href=\"Cuenta.php\">Cuenta</a></li>";
                             //echo $boton1;
 
-                            $boton2 = "<li><a  id=\"btn_Carrito\"name=\"btn_Carrito\" href=\"Carrito.php\">Carrito</a></li>";
-                            //echo $boton2;
 
-                            $botones = $boton1 . $boton . $boton2;
+                            $botones = $boton1 . $boton ;
 
                             echo $botones;
                         } else {
@@ -99,7 +110,7 @@ session_start();
                     <!-- Products -->
                    <h2 style="color:blue;">PRODUCTOS EN CARRITO: </h2>
                         
- <a href="facturar.php">FACTURAR AHORA!</a>
+ 
                    <?php
                    
                     if ($result->num_rows > 0) {
@@ -129,6 +140,7 @@ session_start();
                                 <input type="hidden" name="tipoproductoid" value="'.$row['TipoProducto_idTipoProducto'] . '" >
                                 <input type="hidden" name="imagen" value="'      .  $row['imagenURL']       . '" >
                                 <input type="submit" value="Eliminar de carrito">'.
+
                             '</form>' .
                             '
                         ';
@@ -139,6 +151,11 @@ session_start();
                     ?>
                     <!-- End Products -->
 
+<form class="form-fac" id="form-fac">
+    <input type="hidden" name="idDescuento" id="idDescuento" value=" <?php echo $r4; ?>">
+    <input type="hidden" name="idImpuesto" id="idImpuesto" value="<?php echo $r3; ?>"> 
+    <input type="submit" value="Facturar Ahora!!!"></input>
+</form>
                 </div>
                 <!-- End Content -->
 

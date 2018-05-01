@@ -75,7 +75,16 @@
 
 		}
 
-		public static function eliminarRegistro($conexion, $id){
+		public static function cancelar($conexion, $idFactura){
+			$query_call = sprintf("call SP_CANCELAR_FACTURA($idFactura, @_mensaje,@_ans);");
+			
+			$query_select = "Select @_mensaje as mensaje,@_ans as ans;";
+
+			$resultados_call=$conexion->ejecutarConsulta($query_call);
+			$resultados_select=$conexion->ejecutarConsulta($query_select);
+            $respuesta=$conexion->obtenerFila($resultados_select);
+
+            return $respuesta;
 
 		}
 

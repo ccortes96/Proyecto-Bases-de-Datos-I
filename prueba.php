@@ -1,9 +1,9 @@
 <?php
-	include("Class/class-Carrito.php");
+	include("Class/class-Factura.php");
 	include("Conexion/class-conexion.php");
 
 	$conexion = new Conexion();
-    $respuesta = Carrito::eliminarRegistro($conexion,1,3);
+    $respuesta = Factura::cancelar($conexion,68);
     var_dump($respuesta);
     $conexion->cerrarConexion();
 

@@ -66,7 +66,6 @@ SP:BEGIN
       END WHILE;
 
       DROP TABLE IF EXISTS Compras;
-      DELETE FROM DetalleCarrito WHERE Carrito_idCarrito = pnidCarrito;
       
       COMMIT;
       SET pbOcurrioError = FALSE;

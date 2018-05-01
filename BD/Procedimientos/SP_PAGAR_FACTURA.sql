@@ -22,6 +22,7 @@ SP:BEGIN
     DECLARE vnIdUsuario   INT;
     DECLARE vnNSaldo      DOUBLE(10,2);
     DECLARE vcEstadoFac   VARCHAR(1);
+    DECLARE vnCarrito     INT;
 
     SET autocommit=0;
     START TRANSACTION;
@@ -42,6 +43,8 @@ SP:BEGIN
           UPDATE Cuenta SET Saldo = vnNSaldo WHERE idCuenta = pnidCuenta;
           UPDATE Factura SET estado = 'C' WHERE idFactura = pnidFactura;
           INSERT INTO Pedido(Factura_idFactura, Cuenta_idCuenta) VALUES(pnidFactura,pnidCuenta);
+          SELECT idCarrito INTO vnCarrito FROM (Carrito car INNER JOIN Cuenta cu ON cu.idCuenta = car.Cuenta_idCuenta) WHERE cu.idCuenta = pnidCuenta;
+          DELETE FROM DetalleCarrito WHERE Carrito_idCarrito = vnCarrito;
           COMMIT;
           SET pbOcurrioError = FALSE;
           SET pcMensaje='Su envío está listo para ser entregado.';

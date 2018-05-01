@@ -51,7 +51,16 @@
 
 		}
 
-		public  function actualizarRegistro($conexion){
+		public static function facturar($conexion, $idCarrito, $idDescuento, $idImpuesto){
+			$query_call = sprintf("call SP_FACTURAR_CARRITO($idCarrito, $idDescuento, $idImpuesto, @_mensaje,@_ans);");
+			
+			$query_select = "Select @_mensaje as mensaje,@_ans as ans;";
+
+			$resultados_call=$conexion->ejecutarConsulta($query_call);
+			$resultados_select=$conexion->ejecutarConsulta($query_select);
+            $respuesta=$conexion->obtenerFila($resultados_select);
+
+            return $respuesta;
 
 		}
 

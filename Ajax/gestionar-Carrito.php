@@ -45,7 +45,22 @@
 
       break;
 
-      case "actualizar-registro":
+      case "facturar":
+            session_start();
+            
+            if(isset($_POST["idDescuento"])){
+              $idDescuento = (int)$_POST["idDescuento"];
+            }
+
+            if(isset($_POST["idImpuesto"])){
+              $idImpuesto = (int)$_POST["idImpuesto"];        
+            }
+
+            $carrito = (int)$_SESSION['idCarrito'];
+
+            $res = Carrito::facturar($conexion, $carrito, $idDescuento, $idImpuesto);
+
+            echo json_encode($res);
       break;
 
       default:
