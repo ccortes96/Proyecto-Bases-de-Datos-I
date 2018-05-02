@@ -16,7 +16,7 @@ session_start();
 
         /*--------------------------------------------------------*/
         /*Obteniendo Detalles de la factura*/
-        $sqlFac = "SELECT * FROM ((Factura fac INNER JOIN  DetalleFactura df ON fac.idFactura = df.Factura_idFactura)
+        $sqlFac = "SELECT pro.nombre nombre, pro.precioVenta precioVenta, df.cantidad cantidad FROM ((Factura fac INNER JOIN  DetalleFactura df ON fac.idFactura = df.Factura_idFactura)
         INNER JOIN Producto pro ON df.Producto_idProducto = pro.idProducto)
         WHERE fac.idFactura = $resIDF2;";
         
@@ -24,7 +24,7 @@ session_start();
 
         /*--------------------------------------------------------*/
         /*Obteniendo el Total*/
-        $sqlTotal = "SELECT * FROM vw_Total vwt WHERE vwt.IdFactura = $resIDF2;";
+        $sqlTotal = "SELECT vwt.Total Total, vwt.Subtotal Subtotal, vwt.PorcentajeDescuento PorcentajeDescuento, vwt.PorcentajeImpuesto PorcentajeImpuesto FROM vw_Total vwt WHERE vwt.IdFactura = $resIDF2;";
         $resultTot = $conexion->ejecutarConsulta($sqlTotal);
         $resultTotal = $conexion->obtenerFila($resultTot);
         /*--------------------------------------------------------*/
@@ -81,6 +81,7 @@ session_start();
   <body class="bg-light">
 
     <header>
+      <!--BOTONES SUPERIORES-->
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
         <div class="collapse navbar-collapse" id="navbarsExampleDefault"> 
         <ul class="navbar-nav mr-auto"> 
@@ -88,46 +89,19 @@ session_start();
             <a  href="index.php" class="btn btn-outline-danger">INICIO</a>
             <a href="cuenta.php" class="btn btn-outline-info">Cuenta</a>
             <a  href="logout.php" class="btn btn-outline-info">Salir</a>
-            <!--button type="button" class="btn btn-outline-info">Danger</button-->
           </li>
-          <!--button type="button" class="btn btn-outline-warning">Warning</button>
-          <button type="button" class="btn btn-outline-info">Info</button>
-          <button type="button" class="btn btn-outline-light">Light</button>
-          <button type="button" class="btn btn-outline-dark">Dark</button-->
-
         </ul>
         </div>
-        <form class="form-inline my-2 my-lg-0">
+
+        <!--BOTON SALDO-->
+        <form class="form-inline my-2 my-lg-0" >
           <button class="btn btn-outline-info mr-sm-2" type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Modificar saldo</button>
           <h4 class=" my-2 my-sm-0 " style="color:#fff">  L. <?php echo (string)$result3; ?> </h4>
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Monto:</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form>
-                    <div class="form-group">
-                      <label for="recipient-name" class="col-form-label">L.</label>
-                      <input type="number" class="form-control" id="recipient-name">
-                    </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                  <button type="button" class="btn btn-primary">Agregar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div> 
+
+        </form> 
       </nav>
     </header>
+
 
     <div class="container">
       <div class="py-5 text-center">
@@ -153,7 +127,7 @@ session_start();
               <tr>
                 <th scope="row">*</th>
                 <td>Subtotal:</td>
-                <td> L. <?php echo $resultTotal["Subtotal"]; echo $resIDF2;?></td>
+                <td> L. <?php echo $resultTotal["Subtotal"];?></td>
               </tr>
               <!-- Impuesto -->
               <tr>
@@ -281,9 +255,51 @@ session_start();
       <input type="hidden" name="idFactura" value="<?php echo $resIDF2 ?>" id="idFactura">
       <input type="submit" class="btn btn-primary btn-outline-danger btn-block" name="btn-cancelar" id="btn-cancelar" value="Cancelar">
     </form>
-
-                  
+              <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Monto: L.</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
+      <div class="modal-body">
+        <!-- Contenido Body Modal -->
+        <form  id="form-edit1" name="form-edit1" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+
+
+                        <!-- Contenido Comentarios -->
+                        <div class="row border-chat">
+                        <div class="col-md-12 col-sm-12 col-xs-12 second-section">
+                        <div class="chat-section" id="chat-section" name="chat-section">
+
+                        </div>
+                        </div>
+                        </div>
+
+
+            <div class="form-group">
+            <label for="ExampleTextArea-Descripcion"></label>
+            <textarea class="form-control" id="TextArea-Descripcion1" name="TextArea-Descripcion1" placeholder="Ingrese el monto" rows="3" required></textarea>
+            </div>
+
+
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" id="btn-guardar" name="btn-guardar">Agregar</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+            </div>
+
+      </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+                  
+    </div>
 
       <footer class="my-5 pt-5 text-muted text-center text-small">
         <p>
@@ -295,12 +311,9 @@ session_start();
         </p>
         <p class="mb-1">© 2017-2018 VOL-UNAH</p>
         <ul class="list-inline">
-          <li class="list-inline-item"><a href="https://getbootstrap.com/docs/4.1/examples/checkout/#">Privacy</a></li>
-          <li class="list-inline-item"><a href="https://getbootstrap.com/docs/4.1/examples/checkout/#">Terms</a></li>
-          <li class="list-inline-item"><a href="https://getbootstrap.com/docs/4.1/examples/checkout/#">Support</a></li>
+<a href="a4de2650-4dba-11e8-b174-0cc47a792c0a_id_a4de2650-4dba-11e8-b174-0cc47a792c0a.html">Ayuda</a>
         </ul>
       </footer>
-    </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -311,6 +324,7 @@ session_start();
     <script src="js/bootstrap.min.js.descarga"></script>
     <script src="js/holder.min.js.descarga"></script>
     <script src="js/controlador-factura-cancelar.js"></script>
+    <script src="js/controlador-cuenta-saldo.js"></script>
     <script src="js/controlador-factura-pagar"></script>
     <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
    

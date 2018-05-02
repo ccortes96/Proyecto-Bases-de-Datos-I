@@ -21,6 +21,8 @@ $(document).on("submit","#btn-cancelar",function(event){
 			if (respuesta.ans=="0") {
 				alert(respuesta.mensaje)
                 window.location='productoscarrito.php';
+            }else{
+            	alert(respuesta.mensaje)
             }
 		},
             error:function(e){

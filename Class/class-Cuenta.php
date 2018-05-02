@@ -86,7 +86,17 @@
 
 		}
 
-		public function insertarRegistro($conexion){
+		public static function asaldo($conexion, $idUsuario, $idCuenta, $saldo){
+			
+			$query_call = sprintf("call SP_AGREGAR_SALDO($idUsuario,$idCuenta, $saldo, @_mensaje,@_ans);");
+			
+			$query_select = "Select @_mensaje as mensaje,@_ans as ans;";
+
+			$resultados_call=$conexion->ejecutarConsulta($query_call);
+			$resultados_select=$conexion->ejecutarConsulta($query_select);
+            $respuesta=$conexion->obtenerFila($resultados_select);
+
+            return $respuesta;
 
 		}
 

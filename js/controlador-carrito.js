@@ -17,12 +17,12 @@ $(document).on("submit","#form-addcar",function(event){
 
 		success:function(respuesta){
 
-			alert("Hola3");
-			alert(respuesta.mensaje);
+			//alert("Hola3");
+			//alert(respuesta.mensaje);
 			console.log(respuesta);
 			if (respuesta.ans=="0") {
 				alert(respuesta.mensaje)
-                window.location='index.php';
+                window.location='productoscarrito.php';
             }
 		},
             error:function(e){

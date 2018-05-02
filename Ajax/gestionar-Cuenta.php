@@ -1,16 +1,31 @@
 <?php
-  include("../class/class-conexion.php");
+  include("../Conexion/class-conexion.php");
   include("../class/class-Cuenta.php");
+
   if(isset($_POST["accion"])){
     $conexion = new Conexion();
+
     switch ($_POST['accion']) {
       case "listar-todos":
       break;
 
-      case "seleccionar":
-            break;
+      case "asaldo":
+      session_start();
+        $idUsuario = (int)$_SESSION['idUsuario'];
 
-      case "eliminar-registro":
+        $idCuenta = (int)$_SESSION['idCuenta'];
+
+        if(isset($_POST["saldo"])){
+          $saldo = (float)$_POST["saldo"];
+        }
+
+        $res = Cuenta::asaldo($conexion,$idUsuario,$idCuenta, $saldo);
+
+        echo json_encode($res);
+
+      break;
+
+      case "cancelar":
       break;
 
       case "insertar-registro":

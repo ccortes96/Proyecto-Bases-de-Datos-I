@@ -1,5 +1,5 @@
 $(function () {
-  alert("Entré aquí");
+  //alert("Entré aquí");
   $(document).on("submit","#btn-pagar",function(event){
     idFactura=$("#idFactura").val();
     idFormaEnvio=$("#idFormaEnvio").val();
@@ -22,11 +22,14 @@ $(function () {
 
         },
         success:function(respuesta){
-           alert("Entré aquí 3");
+           //alert("Entré aquí 3");
+           
             if(respuesta == "0"){
-                alert(respuesta.mensaje)
-                window.location='index.php';
-            }alert(respuesta.mensaje)
+                alert(respuesta.mensaje);
+                header('Location: index.php');
+            }else{
+              alert(respuesta.mensaje);
+            }
         },
             error:function(e){
               console.log(e);

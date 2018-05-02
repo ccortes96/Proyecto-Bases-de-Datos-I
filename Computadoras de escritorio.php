@@ -143,6 +143,9 @@ session_start();
                     echo "0 results";
                 }
             ?>
+            <!-- End Products -->
+
+        </div>
         <!-- End Content -->
 
 
@@ -215,7 +218,7 @@ session_start();
         <p class="left">
             <a href="Cuenta.php">Mi Cuenta</a>
             <span>|</span>
-            <a href="#">Ayuda</a>
+            <a href="a4de2650-4dba-11e8-b174-0cc47a792c0a_id_a4de2650-4dba-11e8-b174-0cc47a792c0a.html">Ayuda</a>
             <span>|</span>
               <div class="col-sm-6">
         </p>

@@ -1,9 +1,9 @@
 $(function () {
-	alert("Hola");	
+	//alert("Hola");	
 $(document).on("submit","#form-fac",function(event){
 	idDescuento=$("#idDescuento").val();
 	idImpuesto=$("#idImpuesto").val();
-	alert(idImpuesto);
+	//alert(idImpuesto);
 	event.preventDefault();
 	$.ajax({
 		url:"Ajax/gestionar-Carrito.php",
@@ -17,12 +17,15 @@ $(document).on("submit","#form-fac",function(event){
 
 		success:function(respuesta){
 
-			alert("Hola3");
-			alert(respuesta.mensaje);
+			//alert("Hola3");
+			//alert(respuesta.mensaje);
 			console.log(respuesta);
 			if (respuesta.ans=="0") {
 				alert(respuesta.mensaje)
                 window.location='factura.php';
+            }
+            else{
+            	alert(respuesta.mensaje)
             }
 		},
             error:function(e){

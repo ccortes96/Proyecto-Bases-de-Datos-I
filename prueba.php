@@ -1,9 +1,9 @@
 <?php
-	include("Class/class-Factura.php");
+	include("Class/class-Cuenta.php");
 	include("Conexion/class-conexion.php");
 
 	$conexion = new Conexion();
-    $respuesta = Factura::pagar($conexion,24,24,80,2,1,1,1,1);
+    $respuesta = Cuenta::asaldo($conexion,24,24,20000);
     var_dump($respuesta);
     $conexion->cerrarConexion();
 

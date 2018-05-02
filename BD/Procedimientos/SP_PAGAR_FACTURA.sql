@@ -32,7 +32,7 @@ SP:BEGIN
     SELECT COUNT(*) INTO vnConteo FROM Factura WHERE idFactura = pnidFactura;
     IF vnConteo>0 THEN
       SELECT estado INTO vcEstadoFac FROM Factura WHERE idFactura = pnidFactura;
-      IF vcEstadoFac <> 'C' THEN
+      IF vcEstadoFac = 'P' THEN
         SELECT Saldo INTO vnSaldoA FROM Cuenta WHERE idCuenta = pnidCuenta;
         SELECT Total INTO vnTotalF FROM vw_Total WHERE IdFactura = pnidFactura;
   
@@ -41,8 +41,8 @@ SP:BEGIN
           SET vnNSaldo = FN_MODIFICAR_SALDO(pnidUsuario, pnidCuenta, -vnTotalF);
           UPDATE Cuenta SET Saldo = vnNSaldo WHERE idCuenta = pnidCuenta;
           UPDATE Factura SET estado = 'C' WHERE idFactura = pnidFactura;
-          INSERT INTO Pedido(Factura_idFactura, Cuenta_idCuenta) VALUES(pnidFactura,pnidCuenta);
-          SELECT idCarrito INTO vnCarrito FROM (Carrito car INNER JOIN Cuenta cu ON cu.idCuenta = car.Cuenta_idCuenta) WHERE cu.idCuenta = pnidCuenta;
+          INSERT INTO Pedido(Factura_idFactura, Cuenta_idCuenta) VALUES(pnidFactura, pnidCuenta);
+          SELECT car.idCarrito INTO vnCarrito FROM (Carrito car INNER JOIN Cuenta cu ON cu.idCuenta = car.Cuenta_idCuenta) WHERE car.Cuenta_idCuenta = pnidCuenta;
           DELETE FROM DetalleCarrito WHERE Carrito_idCarrito = vnCarrito;
           COMMIT;
           SET pbOcurrioError = FALSE;
